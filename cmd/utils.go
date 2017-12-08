@@ -206,7 +206,7 @@ func restoreRdbEntry(c redigo.Conn, e *rdb.BinEntry, codis bool) {
 
 	if len(e.Value) < MaxValueSize {
 		if codis {
-			_, err := redigo.String(c.Do("SLOTSRESTORE", e.Key, ttlms, e.Value))
+			_, err := redigo.String(c.Do("RESTORE", e.Key, ttlms, e.Value))
 			if err != nil {
 				log.PanicError(err, "SLOTSRESTORE command error")
 			}
